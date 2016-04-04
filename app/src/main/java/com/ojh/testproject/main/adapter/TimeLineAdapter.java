@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ojh.testproject.R;
+import com.ojh.testproject.common.MyApplication;
 import com.ojh.testproject.main.data.TimeLineItem;
 import com.ojh.testproject.main.view.TimeLineView;
 
@@ -34,8 +36,20 @@ public class TimeLineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((TimeLineView)holder).setItems(items.get(position));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        TimeLineView mHolder = (TimeLineView)holder;
+        mHolder.setItems(items.get(position));
+        mHolder.setTimeLineClickListener(new TimeLineView.TimeLineClickListener() {
+            @Override
+            public void onIconClickListener(int postion) {
+                Toast.makeText(MyApplication.getContext(), "icon, name:"+items.get(position).name, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onButtonClickListener(int postion) {
+                Toast.makeText(MyApplication.getContext(), "btn, desc:"+items.get(position).desc, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.ojh.testproject.main.data.TimeLineItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by INNO-09 on 2016-04-04.
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 public class TimeLineView extends RecyclerView.ViewHolder {
 
     @Bind(R.id.img) ImageView imgIcon;
-    @Bind(R.id.txt) TextView txtName;
+    @Bind(R.id.txt) public TextView txtName;
     @Bind(R.id.txt2) TextView txtDesc;
     @Bind(R.id.radio1) RadioButton radioOne;
     @Bind(R.id.radio2) RadioButton radioTwo;
@@ -41,4 +42,30 @@ public class TimeLineView extends RecyclerView.ViewHolder {
                 .crossFade()
                 .into(imgIcon);
     }
+
+    @OnClick(R.id.img)
+    public void iconClick() {
+        if(mListener!=null) {
+            mListener.onIconClickListener(getAdapterPosition());
+        }
+    }
+
+    @OnClick(R.id.btn)
+    public void btnClick() {
+        if(mListener!=null) {
+            mListener.onButtonClickListener(getAdapterPosition());
+        }
+    }
+
+    public interface TimeLineClickListener {
+        public void onIconClickListener(int postion);
+        public void onButtonClickListener(int postion);
+    }
+
+    TimeLineClickListener mListener;
+
+    public void setTimeLineClickListener(TimeLineClickListener listener) {
+        mListener=listener;
+    }
+
 }
