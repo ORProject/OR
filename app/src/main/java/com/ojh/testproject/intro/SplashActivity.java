@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void doRealStart() {
 
-        if(!TextUtils.isEmpty(PropertyManager.getInstance().getToken())) {
+        if(!TextUtils.isEmpty(PropertyManager.getInstance().getEmail())) {
 //            mHandler.postDelayed(() -> moveToIntro(), 3000);
             mHandler.postDelayed(new Runnable() {
                 @Override

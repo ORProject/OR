@@ -11,4 +11,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="뒷문"
+        android:id="@+id/btnBackDoor"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

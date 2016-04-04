@@ -46,9 +46,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
     }
 
+    //내꺼 단말이상해서 만든 테스트용 버튼이벤트
+    @OnClick(R.id.btnBackDoor)
+    public void onTestClick() {
+        PropertyManager pm = PropertyManager.getInstance();
+        pm.setEmail("ojh102@gmail.com");
+        pm.setId("1234567890");
+        pm.setName("오재환");
+        pm.setToken("token");
+
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
+    }
+
     @OnClick(R.id.sign_in_button)
     public void onClick() {
-//        Toast.makeText(getApplicationContext(),"로긴버튼",Toast.LENGTH_SHORT).show();
         signIn();
     }
 

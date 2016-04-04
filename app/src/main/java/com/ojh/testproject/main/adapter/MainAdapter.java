@@ -1,8 +1,12 @@
-package com.ojh.testproject.main;
+package com.ojh.testproject.main.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.ojh.testproject.main.ExtraFragment;
+import com.ojh.testproject.main.HomeFragment;
+import com.ojh.testproject.main.WriteFragment;
 
 /**
  * Created by INNO-09 on 2016-04-04.

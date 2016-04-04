@@ -11,15 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.ojh.testproject.R;
 import com.ojh.testproject.common.BackPressCloseHandler;
+import com.ojh.testproject.main.adapter.MainAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -101,8 +102,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            Toast.makeText(getApplicationContext(),"camera",Toast.LENGTH_SHORT).show();
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            Toast.makeText(getApplicationContext(),"gallery",Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_slideshow) {
 
