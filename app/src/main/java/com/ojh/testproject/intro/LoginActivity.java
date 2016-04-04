@@ -101,7 +101,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             PropertyManager pm = PropertyManager.getInstance();
             pm.setEmail(acct.getEmail());
             pm.setId(acct.getId());
+            pm.setName(acct.getDisplayName());
             pm.setToken(acct.getIdToken());
+
+            Log.d(TAG,"name : "+acct.getDisplayName());
+            Log.d(TAG, "token : " + acct.getIdToken());
 
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();

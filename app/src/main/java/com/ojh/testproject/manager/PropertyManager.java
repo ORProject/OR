@@ -15,6 +15,7 @@ public class PropertyManager {
     public static final String KEY_TOKEN = "key_token";
     public static final String KEY_ID = "key_id";
     public static final String KEY_EMAIL = "key_email";
+    public static final String KEY_NAME = "key_name";
 
     public static final String KEY_COOKIE = "key_cookie";
 
@@ -42,6 +43,11 @@ public class PropertyManager {
         mEditor.commit();
     }
 
+    public void setName(String name){
+        mEditor.putString(KEY_NAME, name);
+        mEditor.commit();
+    }
+
     public void setCookie(HashSet cookie){
         mEditor.putStringSet(KEY_COOKIE, cookie);
         mEditor.commit();
@@ -50,12 +56,14 @@ public class PropertyManager {
     //getter
     public String getToken() { return mPref.getString(KEY_TOKEN, ""); }
 
-    public String getEmail(){
-        return mPref.getString(KEY_EMAIL, "");
-    }
+    public String getEmail(){ return mPref.getString(KEY_EMAIL, "");    }
 
     public String getId(){
         return mPref.getString(KEY_ID, "");
+    }
+
+    public String getName(){
+        return mPref.getString(KEY_NAME, "");
     }
 
     public HashSet getCookie(){
