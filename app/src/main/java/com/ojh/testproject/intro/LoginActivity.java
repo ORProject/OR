@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.ojh.testproject.R;
 import com.ojh.testproject.main.MainActivity;
+import com.ojh.testproject.manager.PropertyManager;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @OnClick(R.id.sign_in_button)
     public void onClick() {
-        Toast.makeText(getApplicationContext(),"로긴버튼",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),"로긴버튼",Toast.LENGTH_SHORT).show();
         signIn();
     }
 
@@ -59,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly.
-            Toast.makeText(getApplicationContext(),"Got cached sign-in",Toast.LENGTH_SHORT).show();
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
@@ -68,13 +68,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device
             // single sign-on will occur in this branch.
             showProgressDialog();
-            Log.d(TAG, "No Got cached sign-in");
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
                     hideProgressDialog();
                     handleSignInResult(googleSignInResult);
-                    Log.d(TAG, "googleSignInResult = "+googleSignInResult.toString());
                 }
             });
         }
@@ -99,12 +97,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            Toast.makeText(getApplicationContext(),"성공 - "+acct.getDisplayName(),Toast.LENGTH_SHORT).show();
+
+            PropertyManager pm = PropertyManager.getInstance();
+            pm.setEmail(acct.getEmail());
+            pm.setId(acct.getId());
+            pm.setToken(acct.getIdToken());
 
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         } else {
-            Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),getString(R.string.fail_login),Toast.LENGTH_SHORT).show();
         }
     }
     // [END handleSignInResult]
@@ -127,7 +129,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage("로딩");
+            mProgressDialog.setMessage(getString(R.string.load));
             mProgressDialog.setIndeterminate(true);
         }
 

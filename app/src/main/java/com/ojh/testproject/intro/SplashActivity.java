@@ -5,8 +5,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.ojh.testproject.R;
+import com.ojh.testproject.main.MainActivity;
+import com.ojh.testproject.manager.PropertyManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,14 +26,14 @@ public class SplashActivity extends AppCompatActivity {
 
     private void doRealStart() {
 
-        if(!true) {
+        if(!TextUtils.isEmpty(PropertyManager.getInstance().getToken())) {
 //            mHandler.postDelayed(() -> moveToIntro(), 3000);
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     moveToMain();
                 }
-            },3000);
+            },2000);
         } else {
 //            mHandler.postDelayed(()->moveToMain(),3000);
             mHandler.postDelayed(new Runnable() {
@@ -38,12 +41,13 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     moveToIntro();
                 }
-            },3000);
+            },2000);
         }
     }
 
+
     private void moveToMain() {
-        startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }
 

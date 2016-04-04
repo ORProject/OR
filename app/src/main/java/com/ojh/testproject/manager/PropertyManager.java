@@ -12,9 +12,11 @@ public class PropertyManager {
     SharedPreferences mPref;
     SharedPreferences.Editor mEditor;
 
+    public static final String KEY_TOKEN = "key_token";
     public static final String KEY_ID = "key_id";
-    public static final String KEY_PASSWORD = "key_password";
-    public static final String KEY_COOKIE = "kie_cookie";
+    public static final String KEY_EMAIL = "key_email";
+
+    public static final String KEY_COOKIE = "key_cookie";
 
     private PropertyManager(){
         mPref = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
@@ -25,13 +27,18 @@ public class PropertyManager {
     public static PropertyManager getInstance(){ return InstanceHolder.INSTANCE; }
 
     //setter
-    public void setId(String id){
-        mEditor.putString(KEY_ID, id);
+    public void setToken(String token) {
+        mEditor.putString(KEY_TOKEN, token);
         mEditor.commit();
     }
 
-    public void setPassword(String password){
-        mEditor.putString(KEY_PASSWORD, password);
+    public void setEmail(String email){
+        mEditor.putString(KEY_EMAIL, email);
+        mEditor.commit();
+    }
+
+    public void setId(String id){
+        mEditor.putString(KEY_ID, id);
         mEditor.commit();
     }
 
@@ -41,12 +48,14 @@ public class PropertyManager {
     }
 
     //getter
-    public String getId(){
-        return mPref.getString(KEY_ID, "");
+    public String getToken() { return mPref.getString(KEY_TOKEN, ""); }
+
+    public String getEmail(){
+        return mPref.getString(KEY_EMAIL, "");
     }
 
-    public String getPassword(){
-        return mPref.getString(KEY_PASSWORD, "");
+    public String getId(){
+        return mPref.getString(KEY_ID, "");
     }
 
     public HashSet getCookie(){

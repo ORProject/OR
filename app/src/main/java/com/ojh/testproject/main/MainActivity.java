@@ -1,9 +1,8 @@
 package com.ojh.testproject.main;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,9 +22,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private BackPressCloseHandler backPressCloseHandler;
+
     @Bind(R.id.drawer_layout) DrawerLayout drawer;
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.nav_view) NavigationView navigationView;
+    @Bind(R.id.mainViewPager) ViewPager mPager;
+    @Bind(R.id.mainTabLayout) TabLayout mTab;
+
+    private int[] icons = {android.R.drawable.ic_dialog_info, android.R.drawable.ic_dialog_email, android.R.drawable.ic_dialog_map};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity
         init();
     }
 
-
     private void init() {
 
         backPressCloseHandler = new BackPressCloseHandler(this);
@@ -46,6 +50,16 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        MainAdapter mAdapter= new MainAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mAdapter);
+        mTab.setupWithViewPager(mPager);
+
+        for(int i=0; i< mTab.getTabCount(); i++) {
+            mTab.getTabAt(i).setIcon(icons[i]);
+        }
+
+
     }
 
 

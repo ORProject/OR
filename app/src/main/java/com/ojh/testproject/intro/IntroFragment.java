@@ -1,16 +1,20 @@
 package com.ojh.testproject.intro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ojh.testproject.R;
 
 import butterknife.Bind;
+import butterknife.BindDrawable;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class IntroFragment extends Fragment {
@@ -24,6 +28,8 @@ public class IntroFragment extends Fragment {
     };
 
     @Bind(R.id.imgIntro) ImageView imageView;
+    @Bind(R.id.btn_skip) Button btnSkip;
+
 
     public static IntroFragment newInstance(int sectionNumber) {
         IntroFragment fragment = new IntroFragment();
@@ -38,11 +44,20 @@ public class IntroFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_intro, container, false);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
 
         int index = getArguments().getInt(ARG_SECTION_NUMBER);
         imageView.setImageResource(IMG_INTRO[index]);
+        if(index==IMG_INTRO.length-1) {
+            btnSkip.setVisibility(View.VISIBLE);
+        }
 
         return rootView;
+    }
+
+    @OnClick(R.id.btn_skip)
+    public void moveToLogin() {
+        startActivity(new Intent(getActivity(),LoginActivity.class));
+        getActivity().finish();
     }
 }

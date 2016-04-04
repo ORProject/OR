@@ -30,26 +30,6 @@ public class IntroActivity extends AppCompatActivity {
 
         mAdapter = new IntroPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == IntroFragment.IMG_INTRO.length - 1) {
-                    Toast.makeText(getApplicationContext(), "끝", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(IntroActivity.this, LoginActivity.class));
-                    finish();
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         indicator.setViewPager(viewPager);
 
     }
