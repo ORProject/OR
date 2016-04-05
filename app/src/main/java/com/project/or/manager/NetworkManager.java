@@ -3,6 +3,7 @@ package com.project.or.manager;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -27,6 +28,7 @@ public class NetworkManager {
                 .baseUrl(SERVER) // where your server lives
                 .client(okHttpClient) // what your http environment is
                 .addConverterFactory(GsonConverterFactory.create()) // with what data format you want to transmit, in my case JSON
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
 

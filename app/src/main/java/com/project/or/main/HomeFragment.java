@@ -23,6 +23,11 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
 
@@ -48,7 +53,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
         init();
         return rootView;
     }
@@ -66,28 +71,49 @@ public class HomeFragment extends Fragment {
 
         TimeLineApi apiClient = NetworkManager.getInstance().getApi(TimeLineApi.class);
 
-        Call<SearchResult> call = apiClient.searchImageList("636df8b114f0cc206273eacf348eb45a",
+
+        Observable<SearchResult> observable = apiClient.searchImageList("636df8b114f0cc206273eacf348eb45a",
                 "치킨", 10, 1, "json");
-        call.enqueue(new Callback<SearchResult>() {
-            @Override
-            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-                Log.d("message", response.message());
 
-                mAdapter.clear();
-                for (SearchItem item : response.body().channel.item) {
-                    TimeLineItem mItem = new TimeLineItem();
-                    mItem.iconUrl=item.thumbnail;
-                    mItem.name=item.title;
-                    mItem.desc=item.link;
-                    mAdapter.add(mItem);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<SearchResult> call, Throwable t) {
-                Log.e("error", t.getMessage());
-            }
-        });
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<SearchResult>() {
+                    @Override
+                    public void call(SearchResult searchResult) {
+                        for (SearchItem item : searchResult.channel.item) {
+                            TimeLineItem mItem = new TimeLineItem();
+                            mItem.iconUrl = item.thumbnail;
+                            mItem.name = item.title;
+                            mItem.desc = item.link;
+                            mAdapter.add(mItem);
+                        }
+                    }
+                });
+
+
+//        Call<SearchResult> call = apiClient.searchImageList("636df8b114f0cc206273eacf348eb45a",
+//                "치킨", 10, 1, "json");
+//        call.enqueue(new Callback<SearchResult>() {
+//            @Override
+//            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
+//                Log.d("message", response.message());
+//
+//                mAdapter.clear();
+//                for (SearchItem item : response.body().channel.item) {
+//                    TimeLineItem mItem = new TimeLineItem();
+//                    mItem.iconUrl=item.thumbnail;
+//                    mItem.name=item.title;
+//                    mItem.desc=item.link;
+//                    mAdapter.add(mItem);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<SearchResult> call, Throwable t) {
+//                Log.e("error", t.getMessage());
+//            }
+//        });
 
     }
 
