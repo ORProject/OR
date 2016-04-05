@@ -18,12 +18,15 @@ import com.ojh.testproject.network.TimeLineApi;
 import com.ojh.testproject.test.SearchItem;
 import com.ojh.testproject.test.SearchResult;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+    @Bind(R.id.homeRecyclerView)
     RecyclerView recyclerView;
 
     TimeLineAdapter mAdapter;
@@ -44,14 +47,13 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        init(rootView);
+        ButterKnife.bind(this,rootView);
+        init();
         return rootView;
     }
 
-    private void init(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.homeRecyclerView);
+    private void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new TimeLineDecoration(10));
         mAdapter = new TimeLineAdapter(getContext());
@@ -87,15 +89,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-//        mAdapter.clear();
-//        for(int i=0; i<10; i++) {
-//            TimeLineItem item = new TimeLineItem();
-//            item.name = "이름"+i;
-//            item.desc = i+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-//            item.iconUrl = res_img[i%2];
-//            mAdapter.add(item);
-//        }
     }
 
 }
