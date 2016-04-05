@@ -1,4 +1,4 @@
-package com.ojh.testproject;
+package com.project.or;
 
 import org.junit.Test;
 
