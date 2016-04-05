@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_id": "test-de4e3",
-    "project_number": "714365328740",
-    "name": "Test"
+    "project_id": "testproject-45d2f",
+    "project_number": "561003059000",
+    "name": "TestProject"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:714365328740:android:fd99efc4b67d7e30",
+        "mobilesdk_app_id": "1:561003059000:android:fd99efc4b67d7e30",
         "client_id": "android:com.ojh.testproject",
         "client_type": 1,
         "android_client_info": {
@@ -17,15 +17,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "714365328740-qv6e6pe0unchem8u1k9gmaf1vp1oln47.apps.googleusercontent.com",
+          "client_id": "561003059000-e149668opvnb8jt8m22e48pnu1telejb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ojh.testproject",
-            "certificate_hash": "5E6451FA1668D35FFF31AFEF6D76E36D61F6FF8D"
+            "certificate_hash": "DEEBB923D487364960E60535BF5367AFA13966A4"
           }
         },
         {
-          "client_id": "714365328740-bm534faebdimrq9stjqd7uap8h6ecfqe.apps.googleusercontent.com",
+          "client_id": "561003059000-uel9fdje4tpnl4mbv46h1bhc9ts2v7u6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +35,7 @@
           "status": 1
         },
         "cloud_messaging_service": {
-          "status": 1,
+          "status": 2,
           "apns_config": []
         },
         "appinvite_service": {
