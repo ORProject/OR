@@ -1,8 +1,7 @@
-package com.project.or.network;
+package com.project.or.restapi;
 
 import com.project.or.test.SearchResult;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

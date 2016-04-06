@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,13 @@ import com.project.or.main.adapter.TimeLineAdapter;
 import com.project.or.main.data.TimeLineItem;
 import com.project.or.main.view.TimeLineDecoration;
 import com.project.or.manager.NetworkManager;
-import com.project.or.network.TimeLineApi;
+import com.project.or.restapi.TimeLineApi;
 import com.project.or.test.SearchItem;
 import com.project.or.test.SearchResult;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -35,9 +30,6 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
 
     TimeLineAdapter mAdapter;
-
-    private String res_img[] = {"http://imgnews.naver.com/image/138/2011/02/16/20110216150008__BXS3J.jpg"
-            , "http://imgnews.naver.com/image/011/2011/02/10/alba04201102101655230.jpg"};
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
