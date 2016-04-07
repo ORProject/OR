@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.project.or.R;
-import com.project.or.main.MainActivity;
+import com.project.or.main.view.MainActivity;
 import com.project.or.manager.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 public class SplashActivity extends AppCompatActivity {
 

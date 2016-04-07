@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.project.or.R;
-import com.project.or.main.MainActivity;
+import com.project.or.main.view.MainActivity;
 import com.project.or.manager.PropertyManager;
 
 import butterknife.ButterKnife;
