@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -33,24 +32,14 @@ public class SplashActivity extends AppCompatActivity {
     private void doRealStart() {
 
         if(!TextUtils.isEmpty(PropertyManager.getInstance().getToken())) {
-//            mHandler.postDelayed(()->moveToMain(),2000);
-
             //rx timer 적용
             Observable.timer(2, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<Long>() {
-                        @Override
-                        public void call(Long aLong) {
-                            moveToMain();
-                        }
+                    .subscribe(aLong -> {
+                        moveToMain();
                     });
         } else {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    moveToIntro();
-                }
-            },2000);
+            mHandler.postDelayed(() -> moveToIntro(),2000);
         }
     }
 

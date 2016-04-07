@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.project.or.main.view.ExtraFragment;
-import com.project.or.main.view.HomeFragment;
 import com.project.or.main.view.WriteFragment;
+import com.project.or.main.view.HomeFragment;
 
 /**
  * Created by INNO-09 on 2016-04-04.

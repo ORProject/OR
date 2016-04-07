@@ -13,8 +13,6 @@ import com.project.or.test.SearchResult;
 import javax.inject.Inject;
 
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -39,28 +37,18 @@ public class HomePresenterImpl implements HomePresenter {
         timeLineApi.searchImage("636df8b114f0cc206273eacf348eb45a",
                 "치킨", 10, 1, "json").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(((HomeFragment)view).<SearchResult>bindToLifecycle())
-                .subscribe(new Action1<SearchResult>() {
-                    @Override
-                    public void call(SearchResult searchResult) {
-                        for (SearchItem item : searchResult.channel.item) {
-                            TimeLineItem mItem = new TimeLineItem();
-                            mItem.iconUrl = item.thumbnail;
-                            mItem.name = item.title;
-                            mItem.desc = item.link;
-                            timeLineAdapterDataModel.add(mItem);
-                        }
+                .compose(((HomeFragment) view).<SearchResult>bindToLifecycle())
+                .subscribe(searchResult -> {
+                    for (SearchItem item : searchResult.channel.item) {
+                        TimeLineItem mItem = new TimeLineItem();
+                        mItem.iconUrl = item.thumbnail;
+                        mItem.name = item.title;
+                        mItem.desc = item.link;
+                        timeLineAdapterDataModel.add(mItem);
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Toast.makeText(MyApplication.getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }, new Action0() {
-                    @Override
-                    public void call() {
-                        view.refresh();
-                    }
-                });
+                }
+                 , throwable -> Toast.makeText(MyApplication.getContext(),
+                                throwable.getMessage(), Toast.LENGTH_SHORT).show()
+                 , () -> view.refresh());
     }
 }
