@@ -1,4 +1,4 @@
-package com.project.or.main.data;
+package com.project.or.main.model;
 
 /**
  * Created by INNO-09 on 2016-04-04.

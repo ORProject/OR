@@ -1,4 +1,4 @@
-package com.project.or.main;
+package com.project.or.main.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.project.or.R;
-import com.project.or.main.dialog.CustomDialog;
+import com.project.or.dialog.CustomDialog;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

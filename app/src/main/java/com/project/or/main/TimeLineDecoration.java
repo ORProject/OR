@@ -1,4 +1,4 @@
-package com.project.or.main.view;
+package com.project.or.main;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

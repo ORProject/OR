@@ -25,7 +25,7 @@
             android:theme="@style/AppTheme.NoActionBar.FullScreen" />
         <activity android:name="com.project.or.intro.LoginActivity" />
         <activity
-            android:name="com.project.or.main.MainActivity"
+            android:name=".main.view.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

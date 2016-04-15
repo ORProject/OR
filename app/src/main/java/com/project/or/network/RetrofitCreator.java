@@ -1,4 +1,4 @@
-package com.project.or.manager;
+package com.project.or.network;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -19,7 +19,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class NetworkManager {
+public class RetrofitCreator {
 
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;
@@ -27,7 +27,7 @@ public class NetworkManager {
     private static final String SERVER = "https://apis.daum.net/";
     Retrofit client;
 
-    private NetworkManager() {
+    private RetrofitCreator() {
         //Retrofit Enviroment setting.
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -53,19 +53,23 @@ public class NetworkManager {
 
     // singleton holder pattern : thread safe, lazy class initialization, memory saving.
     public static class InstanceHolder {
-        public static final NetworkManager INSTANCE = new NetworkManager();
+        public static final RetrofitCreator INSTANCE = new RetrofitCreator();
     }
 
-    public static NetworkManager getInstance() {
-        return InstanceHolder.INSTANCE;
+//    public static RetrofitCreator getInstance() {
+//        return InstanceHolder.INSTANCE;
+//    }
+
+    public static Retrofit createRetrofit() {
+        return InstanceHolder.INSTANCE.client;
     }
 
-    //API Return
-    public <T> T getApi(Class<T> serviceClass) {
-        // connecting my API and my Retrofit environment and return.
-        // then I'm able to call my API and make use of it
-        return client.create(serviceClass);
-    }
+//    //API Return
+//    public <T> T getApi(Class<T> serviceClass) {
+//        // connecting my API and my Retrofit environment and return.
+//        // then I'm able to call my API and make use of it
+//        return client.create(serviceClass);
+//    }
 
     /**
      * UnCertificated 허용

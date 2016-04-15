@@ -1,4 +1,4 @@
-package com.project.or.main.dialog;
+package com.project.or.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

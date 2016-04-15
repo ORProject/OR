@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.project.or.R;
 import com.project.or.common.MyApplication;
-import com.project.or.main.data.TimeLineItem;
+import com.project.or.main.model.TimeLineItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +19,7 @@ import butterknife.OnClick;
 /**
  * Created by INNO-09 on 2016-04-04.
  */
-public class TimeLineView extends RecyclerView.ViewHolder {
+public class TimeLineViewHolder extends RecyclerView.ViewHolder {
 
     @Bind(R.id.img) ImageView imgIcon;
     @Bind(R.id.txt) public TextView txtName;
@@ -28,7 +28,7 @@ public class TimeLineView extends RecyclerView.ViewHolder {
     @Bind(R.id.radio2) RadioButton radioTwo;
     @Bind(R.id.btn) Button btn;
 
-    public TimeLineView(View itemView) {
+    public TimeLineViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
@@ -41,6 +41,7 @@ public class TimeLineView extends RecyclerView.ViewHolder {
                 .load(mItem.iconUrl)
                 .crossFade()
                 .into(imgIcon);
+
     }
 
     @OnClick(R.id.img)
