@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.project.or.main.view.ExtraFragment;
+import com.project.or.main.view.NoticeFragment;
 import com.project.or.main.view.WriteFragment;
 import com.project.or.main.view.HomeFragment;
 
@@ -32,7 +32,7 @@ public class MainAdapter extends FragmentStatePagerAdapter {
                 resultFragment = WriteFragment.newInstance();
                 break;
             case 2:
-                resultFragment = ExtraFragment.newInstance();
+                resultFragment = NoticeFragment.newInstance();
                 break;
         }
 

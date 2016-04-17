@@ -5,7 +5,6 @@ import com.project.or.main.adapter.TimeLineAdapterDataModel;
 import com.project.or.main.adapter.TimeLineAdapterDataView;
 import com.project.or.main.presenter.HomePresenter;
 import com.project.or.main.presenter.HomePresenterImpl;
-import com.project.or.network.NeworkModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,7 +12,7 @@ import dagger.Provides;
 /**
  * Created by INNO-09 on 2016-04-07.
  */
-@Module(includes = NeworkModule.class)
+@Module
 public class HomeModule {
 
     private HomePresenter.View view;

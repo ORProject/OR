@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.project.or.R;
-import com.project.or.main.TimeLineDecoration;
+import com.project.or.main.CustomItemDecoration;
 import com.project.or.main.adapter.TimeLineAdapter;
 import com.project.or.main.adapter.TimeLineAdapterDataView;
 import com.project.or.main.component.DaggerHomeComponent;
@@ -30,7 +30,7 @@ public class HomeFragment extends RxFragment implements HomePresenter.View {
     TimeLineAdapterDataView timeLineAdapterDataView;
 
     @Bind(R.id.homeRecyclerView)
-    RecyclerView recyclerView;
+    RecyclerView listTimeLine;
 
     TimeLineAdapter mAdapter;
 
@@ -57,11 +57,11 @@ public class HomeFragment extends RxFragment implements HomePresenter.View {
 
         ButterKnife.bind(this, rootView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new TimeLineDecoration(10));
-        recyclerView.setAdapter(mAdapter);
+        listTimeLine.setLayoutManager(new LinearLayoutManager(getContext()));
+        listTimeLine.addItemDecoration(new CustomItemDecoration(10));
+        listTimeLine.setAdapter(mAdapter);
 
-        homePresenter.getData();
+        homePresenter.getTimeLineData();
 
         return rootView;
     }

@@ -1,4 +1,4 @@
-package com.project.or.main.view;
+package com.project.or.main.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class TimeLineDecoration extends RecyclerView.ItemDecoration {
+public class CustomItemDecoration extends RecyclerView.ItemDecoration {
     private final int divHeight;
 
-    public TimeLineDecoration(int divHeight) {
+    public CustomItemDecoration(int divHeight) {
         this.divHeight = divHeight;
     }
 

@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.project.or.R;
 import com.project.or.common.MyApplication;
 import com.project.or.main.model.TimeLineItem;
-import com.project.or.main.view.TimeLineViewHolder;
+import com.project.or.main.viewholder.TimeLineViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
