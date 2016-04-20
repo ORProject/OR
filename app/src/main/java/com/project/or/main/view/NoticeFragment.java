@@ -36,11 +36,6 @@ public class NoticeFragment extends RxFragment implements NoticePresenter.View {
 
     NoticeAdapter mAdapter;
 
-    public NoticeFragment() {
-        // Required empty public constructor
-    }
-
-
     public static NoticeFragment newInstance() {
         NoticeFragment fragment = new NoticeFragment();
         return fragment;

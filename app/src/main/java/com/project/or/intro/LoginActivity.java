@@ -47,6 +47,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
     }
 
+    @OnClick(R.id.btnBackDoor)
+    public void backDoor() {
+        PropertyManager pm = PropertyManager.getInstance();
+        pm.setEmail("email");
+        pm.setId("id");
+        pm.setName("name");
+        pm.setToken("token");
+
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
+    }
+
 
     // [START signIn]
     @OnClick(R.id.sign_in_button)
