@@ -19,6 +19,11 @@ import com.bumptech.glide.Glide;
 import com.project.or.R;
 import com.project.or.common.MyApplication;
 import com.project.or.dialog.CustomDialog;
+import com.project.or.gallery.GalleryActivity;
+import com.project.or.gallery.GalleryItem;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +34,10 @@ public class WriteFragment extends Fragment {
 
     @Bind(R.id.imgLeft)
     ImageView imgLeft;
+    @Bind(R.id.imgRight)
+    ImageView imgRight;
+
+    private ArrayList<GalleryItem> galleryItems = new ArrayList<GalleryItem>();
 
     public static WriteFragment newInstance() {
         WriteFragment fragment = new WriteFragment();
@@ -49,26 +58,38 @@ public class WriteFragment extends Fragment {
         return rootView;
     }
 
-    public static int REQUEST_GALLERY = 10000;
-
     @OnClick(R.id.btnGallery)
-    public void selectPicture() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, REQUEST_GALLERY);
+    public void moveToGallery() {
+        Intent intent = new Intent(getContext(), GalleryActivity.class);
+        intent.putExtra(GalleryActivity.images, galleryItems);
+        startActivityForResult(intent, GalleryActivity.REQ_PHOTO_SELECTED);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==REQUEST_GALLERY && resultCode == Activity.RESULT_OK) {
+        if(requestCode==GalleryActivity.REQ_PHOTO_SELECTED && resultCode == Activity.RESULT_OK) {
 
-            Glide.with(MyApplication.getContext())
-                    .load(data.getData())
-                    .centerCrop()
-                    .into(imgLeft);
+            imgLeft.setImageResource(R.drawable.gallery_empty);
+            imgRight.setImageResource(R.drawable.gallery_empty);
 
+            if(null != data) {
+                ArrayList<GalleryItem> item = (ArrayList<GalleryItem>) data.getExtras().get(GalleryActivity.imageSelectResult);
+                galleryItems = item;
+                if(item.size() >= 1) {
+                    Glide.with(MyApplication.getContext())
+                            .load(item.get(0).sdcardPath)
+                            .centerCrop()
+                            .into(imgLeft);
+                }
+
+                if(item.size() >= 2 ) {
+                    Glide.with(MyApplication.getContext())
+                            .load(item.get(1).sdcardPath)
+                            .centerCrop()
+                            .into(imgRight);
+                }
+            }
         }
     }
 
